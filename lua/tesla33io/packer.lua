@@ -54,5 +54,8 @@ return require('packer').startup(function(use)
 		end
 	}
 
+	-- 42 Header
+	use { "Diogo-ss/42-header.nvim" }
+
 end)
 
