@@ -1,34 +1,47 @@
--- Function to generate include protection for a C header file and write it to the file
-local function generateAndWriteIncludeProtection(filename)
-    -- Convert filename to uppercase and replace '.' with '_'
-    local includeGuard = string.upper(string.gsub(filename, "%.", "_"))
-    
-    -- Replace non-alphanumeric characters with underscores
-    includeGuard = string.gsub(includeGuard, "%W", "_")
+local function get_current_buffer_filename()
+	local bufnr = vim.api.nvim_get_current_buf()
+    local full_path = vim.api.nvim_buf_get_name(bufnr)
+    return vim.fn.fnamemodify(full_path, ":t")
+end
 
-    -- Generate include protection
-    local includeProtection = string.format("#ifndef %s\n#define %s\n\n", includeGuard, includeGuard)
+local function get_file_extension(filename)
+    return filename:match("^.+(%..+)$")
+end
 
-    -- Add endif statement
-    includeProtection = includeProtection .. string.format("#endif /* %s */\n", includeGuard)
+local function is_header_file(filename)
+    local extension = get_file_extension(filename)
+    if extension then
+        local header_extensions = {".h", ".hpp", ".hxx"} -- Add more if necessary
+        for _, ext in ipairs(header_extensions) do
+            if extension == ext then
+                return true
+            end
+        end
+    end
+    return false
+end
 
-    -- Open the file in write mode, overwrite existing content
-    local file = io.open(filename, "w")
+local function generate_include_guard()
+	local filename = get_current_buffer_filename()
+    if is_header_file(filename) then
+		local include_guard = string.upper(filename:gsub("[^%w]", "_"))
+        local ifndef_line = "#ifndef " .. include_guard
+        local define_line = "# define " .. include_guard
+        local endif_line = "#endif /* " .. include_guard .. " */"
 
-    if file then
-        -- Write the include protection to the file
-        file:write(includeProtection)
+        -- Open the current buffer in read-write mode
+        local bufnr = vim.api.nvim_get_current_buf()
+		
+		-- Get the cursor position (line and column)
+        local line, _ = unpack(vim.api.nvim_win_get_cursor(0))
 
-        -- Close the file
-        file:close()
-
-        print("Include protection written to file:", filename)
+        -- Insert include guard lines at the beginning of the buffer
+        vim.api.nvim_buf_set_lines(bufnr, line, line, false, { ifndef_line, define_line, "", endif_line })
     else
-        print("Error: Unable to open file for writing:", filename)
+        print("Are you lost? It's not a header file! (-(-_-(-_(-_(-_-)_-)-_-)_-)_-)-)")
     end
 end
 
--- Example usage
--- Replace "example_header_file.h" with the actual filename when calling the function
--- generateAndWriteIncludeProtection("example_header_file.h")
-
+return {
+    generate_include_guard = generate_include_guard
+}

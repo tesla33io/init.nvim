@@ -13,4 +13,8 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
 -- h_protect for headers
-vim.keymap.set("n", "<leader>hp", ':lua require("tesla33io.h_protect").headerguard_add()<CR>')
+vim.keymap.set(
+	"n",
+	"<leader>hh",
+	'<cmd>lua require("tesla33io.h_protect").generate_include_guard()<CR>'
+)
