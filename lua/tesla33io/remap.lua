@@ -12,3 +12,5 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
+-- h_protect for headers
+vim.keymap.set("n", "<leader>hp", ':lua require("tesla33io.h_protect").headerguard_add()<CR>')
