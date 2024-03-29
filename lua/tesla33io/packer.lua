@@ -57,5 +57,16 @@ return require('packer').startup(function(use)
 	-- 42 Header
 	use { "Diogo-ss/42-header.nvim" }
 
+	-- Comment highlightning
+	use {
+		'folke/todo-comments.nvim',
+		config = function()
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		end,
+		dependencies = { 'nvim-lua/plenary.nvim' },
+	}
+
 end)
 
