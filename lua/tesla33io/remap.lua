@@ -18,3 +18,11 @@ vim.keymap.set(
 	"<leader>hh",
 	'<cmd>lua require("tesla33io.h_protect").generate_include_guard()<CR>'
 )
+
+-- Show comments for functions/macros
+vim.keymap.set(
+	"n",
+	"<C-h>",
+	"<cmd>lua vim.lsp.buf.hover()<CR>",
+	{ remap = true }
+)
