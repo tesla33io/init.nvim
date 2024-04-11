@@ -28,3 +28,15 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.api.nvim_set_hl(0, 'LineNr', { bg = 'none' })
+
+-- Spaces and tabs
+vim.cmd [[set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣]]
+-- vim.opt.listchars = {
+-- 	eol = '¬',
+-- 	tab = '▏',
+-- 	trail = '~',
+-- 	extends = '>',
+-- 	precedes = '<',
+-- 	space = '␣'
+-- }
+-- vim.api.nvim_set_option('listchars', "eol:¬,tab:▏,trail:~,extends:>,precedes:<,space:␣,")

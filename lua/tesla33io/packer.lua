@@ -67,6 +67,11 @@ return require('packer').startup(function(use)
 		-- end,
 	-- 	dependencies = { 'nvim-lua/plenary.nvim' },
 	-- }
+	
+	-- Rust
+	use {
+		'simrat39/rust-tools.nvim'
+	}
 
 end)
 
