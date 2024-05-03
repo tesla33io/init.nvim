@@ -73,5 +73,9 @@ return require('packer').startup(function(use)
 		'simrat39/rust-tools.nvim'
 	}
 
+	use {
+		'nvim-focus/focus.nvim'
+	}
+
 end)
 

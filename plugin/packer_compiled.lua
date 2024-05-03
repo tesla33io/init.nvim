@@ -89,6 +89,11 @@ _G.packer_plugins = {
     path = "/home/astavrop/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
+  ["focus.nvim"] = {
+    loaded = true,
+    path = "/home/astavrop/.local/share/nvim/site/pack/packer/start/focus.nvim",
+    url = "https://github.com/nvim-focus/focus.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/home/astavrop/.local/share/nvim/site/pack/packer/start/harpoon",
