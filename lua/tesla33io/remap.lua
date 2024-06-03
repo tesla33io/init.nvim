@@ -26,3 +26,8 @@ vim.keymap.set(
 	"<cmd>lua vim.lsp.buf.hover()<CR>",
 	{ remap = true }
 )
+
+vim.keymap.set('n', '<C-s>', ':w<CR>')
+vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>a')
+vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>')
+vim.keymap.set('c', '<C-s>', '<C-c>:w<CR>')
